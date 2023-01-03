@@ -12,6 +12,14 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  late Future<Widget> generatedPosts;
+
+  @override
+  void initState() {
+    super.initState();
+    generatedPosts = generatePosts();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,17 +27,20 @@ class _HomeState extends State<Home> {
         backgroundColor: Colors.black,
         title: const Text("Home"),
       ),
-      body: FutureBuilder(
-        future: generatePosts(),
-        builder: (BuildContext context, AsyncSnapshot snapshot) {
-          if (snapshot.hasData) {
-            return snapshot.data;
-          } else if (snapshot.hasError) {
-            return Text("Error: ${snapshot.error}");
-          } else {
-            return CircularProgressIndicator();
-          }
-        },
+      body: RefreshIndicator(
+        onRefresh: refreshPostData,
+        child: FutureBuilder(
+          future: generatedPosts,
+          builder: (BuildContext context, AsyncSnapshot snapshot) {
+            if (snapshot.hasData) {
+              return snapshot.data;
+            } else if (snapshot.hasError) {
+              return Text("Error: ${snapshot.error}");
+            } else {
+              return const Center(child: CircularProgressIndicator());
+            }
+          },
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.blue,
@@ -42,6 +53,12 @@ class _HomeState extends State<Home> {
         child: const Icon(Icons.add),
       ),
     );
+  }
+
+  Future<void> refreshPostData() async {
+    setState(() {
+      generatedPosts = generatePosts();
+    });
   }
 
   Future<Map<String, PostData>> getPostData() async {
