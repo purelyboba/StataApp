@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "288847939853",
+    "project_id": "statasocial",
+    "storage_bucket": "statasocial.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:288847939853:android:299ed32d854dc0f84b0844",
+        "android_client_info": {
+          "package_name": "com.example.stata_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "288847939853-eb5ba4sbteimi4d6fp1p3005na2n4qjb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDs7ZZrZXTMox9_OzD02j4XPeQEntj_fpo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "288847939853-eb5ba4sbteimi4d6fp1p3005na2n4qjb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
